@@ -24,6 +24,30 @@
   transition: 0.2s;
 }
 
+/* Flip animation for tiles */
+@keyframes flipIn {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.cell.flip {
+  animation: flipIn 0.5s ease-in-out;
+}
+
+/* Animation delays for staggered effect */
+.cell.flip-delay-0 { animation-delay: 0s; }
+.cell.flip-delay-1 { animation-delay: 0.1s; }
+.cell.flip-delay-2 { animation-delay: 0.2s; }
+.cell.flip-delay-3 { animation-delay: 0.3s; }
+.cell.flip-delay-4 { animation-delay: 0.4s; }
+
 .popup-overlay {
   position: fixed;
   top: 0;

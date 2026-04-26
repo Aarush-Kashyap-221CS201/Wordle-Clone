@@ -75,6 +75,17 @@ const Grid = ({
           newColors[currentRow] = rowColors;
           setColors(newColors);
 
+          // Trigger flip animation for each tile in the row
+          const row = currentRow;
+          for (let i = 0; i < cols; i++) {
+            setTimeout(() => {
+              const cell = document.querySelector(`.row:nth-child(${row + 1}) .cell:nth-child(${i + 1})`);
+              if (cell) {
+                cell.classList.add("flip", `flip-delay-${i}`);
+              }
+            }, i * 100);
+          }
+
           // ✅ Win check
           if (guess.join("") === SECRET_WORD) {
             setGameStatus("won");
@@ -105,7 +116,7 @@ const Grid = ({
             {row.map((cell, colIndex) => (
               <div
                 key={colIndex}
-                className="cell"
+                className={`cell ${colors[rowIndex][colIndex] && colors[rowIndex][colIndex] !== "" ? "flip" : ""}`}
                 style={{
                   backgroundColor:
                     colors[rowIndex][colIndex] || "transparent",
